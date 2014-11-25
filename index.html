@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function matrixDet(matrix, n) {
+            var i, j;
+
+            var tmpMatrix = [];
+            for (i = 0; i < n; i++) {
+                tmpMatrix[i] = new Array(n);
+            }
+
+            for (i = 0; i < n; i++) {
+                for (j = 0; j < n; j++) {
+                    if (matrix[i][j] == 0) {
+                        /**
+                         * Матрицу хоть с 1 нулевым числом нельзя использовать для данного алгоритма
+                         */
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        var matrix = [
+                [1, 2, 3],
+                [1, 2, 3],
+                [1, 2, 3]
+        ];
+
+        matrixDet(matrix, matrix.length);
+        console.log(matrix);
+    </script>
+</body>
+</html>
