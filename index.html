@@ -6,13 +6,14 @@
 </head>
 <body>
     <script>
+        Number.prototype.compareTo = function (obj) {
+            assert (obj instanceof Number, "param type is error!");
+            v = obj.valueOfIn();
+            return this.valueOf () <v? -1: this.valueOf (? 1: 0)> v;
+        };
+
         function matrixDet(matrix, n) {
             var i, j;
-
-            var tmpMatrix = [];
-            for (i = 0; i < n; i++) {
-                tmpMatrix[i] = new Array(n);
-            }
 
             for (i = 0; i < n; i++) {
                 for (j = 0; j < n; j++) {
@@ -20,16 +21,70 @@
                         /**
                          * Матрицу хоть с 1 нулевым числом нельзя использовать для данного алгоритма
                          */
-                        return 0;
+                        return false;
                     }
+                }
+            }
+
+            var tmpMatrix = new Array(n);
+
+            var tmp;
+
+            for (i = 0; i < n; i++) {
+                tmp = 0;
+
+                for (j = 0; j < n; j++) {
+                    if (Math.abs(matrix[i][j]) > tmp) {
+                        tmp = Math.abs(matrix[i][j]);
+                    }
+                }
+
+                /**
+                 * @todo Проверить долбаеб ли я?
+                 * @type {number}
+                 */
+                tmpMatrix[i] = (1/tmp)/1;
+//                console.log(tmpMatrix[i]);
+            }
+
+            var sign = 1;
+            var summ;
+
+            for (j = 0; j < n; j++) {
+                for (i = 0; i < j; i++) {
+                    summ = matrix[i][j];
+//                    console.log(summ);
+
+                    for (k = 0; k < i; k++) {
+                        console.log(matrix[i][k])
+                        summ -= matrix[i][k] * matrix[k][j];
+                    }
+
+//                    console.log(summ);
+                    matrix[i][j] = summ;
+                }
+
+                tmp = 0;
+                var imax = -1;
+
+                for (i = j; i < n; i++) {
+                    summ = [i][j];
+
+                    for (k = 0; k < j; k++) {
+                        summ -= matrix[i][k] * matrix[k][j];
+                    }
+
+                    matrix[i][j] = summ;
+                    var cur = Math.abs(summ);
+                    if (Math.compareTo cur > )
                 }
             }
         }
 
         var matrix = [
-            [1, 2, 3],
-            [1, 2, 3],
-            [1, 2, 3]
+            [1, 2, 2],
+            [5, 5, 3],
+            [6, 2, 1]
         ];
 
         console.log(matrixDet(matrix, matrix.length));
