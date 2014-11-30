@@ -163,6 +163,11 @@
     console.log(matrix);
 </script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<style>
+    .not-valid {
+        border: 1px solid red;
+    }
+</style>
 <script>
     $(document).ready(function () {
         console.log("ready!");
@@ -201,14 +206,22 @@
 
                 var arrElementsRow = [];
                 $(this).find('td input').each(function(element) {
-                    arrElementsRow.push(parseFloat($(this).val()));
+                    var $element = $(this);
+
+                    if ($element.val() == "") {
+                        $element.addClass('not-valid');
+                    } else {
+                        $element.removeClass('not-valid');
+                    }
+
+                    arrElementsRow.push(parseFloat($element.val()));
                 });
 
                 matrix.push(arrElementsRow);
             });
 
             console.log(matrix);
-            $('#result').html(matrixDet(matrix));
+            $('#result').html(matrixDet(matrix, matrix.length));
         })
     });
 </script>
