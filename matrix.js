@@ -7,7 +7,7 @@ Number.prototype.compareTo = function (obj) {
     v = obj.valueOf();
     thisValue = obj.valueOf();
 
-    return thisValue > v ? -1 : (thisValue < v ? 1 : 0);
+    return this.valueOf() == v ? 0 : (this.valueOf() < v ? -1 : 1);
 };
 
 Number.prototype.divide = function (divisor, scale, type) {
@@ -64,7 +64,7 @@ function matrixDet(matrix, n) {
          * @type {number}
          */
         scaling[i] = (1 / tmp) / 1;
-//                console.log(tmpMatrix[i]);
+         //console.log(tmpMatrix[i]);
     }
 
     var sign = 1;
@@ -96,8 +96,11 @@ function matrixDet(matrix, n) {
 
             console.log("Summ matrix[" + i + "][" + j + "] = " + summ);
             matrix[i][j] = summ;
-            var cur = Math.abs(summ);
 
+            var cur = Math.abs(summ);
+            cur *= scaling[i];
+
+            console.log(cur + "compareTo(" + tmp + ") = " + cur.compareTo(tmp));
             if (cur.compareTo(tmp) >= 0) {
                 tmp = cur;
                 imax = i;
