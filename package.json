@@ -1,0 +1,22 @@
+{
+  "name": "matrix-kraut-algoritm",
+  "version": "1.0.0",
+  "description": "Метод Краута ============",
+  "main": "matrix.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ovr/matrix-kraut-algoritm.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ovr/matrix-kraut-algoritm/issues"
+  },
+  "homepage": "https://github.com/ovr/matrix-kraut-algoritm",
+  "dependencies": {
+    "unit.js": "^1.0.2"
+  }
+}
