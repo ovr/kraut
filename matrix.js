@@ -63,8 +63,7 @@ function matrixDet(matrix, n) {
          * @todo Проверить долбаеб ли я?
          * @type {number}
          */
-        scaling[i] = (1 / tmp) / 1;
-         //console.log(tmpMatrix[i]);
+        scaling[i] = Number(1).divide(tmp, 100, 6);
     }
 
     var sign = 1;
