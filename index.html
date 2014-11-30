@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+//    var matrix = [
+//        [1, 2, 2],
+//        [5, 5, 3],
+//        [6, 2, 1]
+//    ];
+//
+//    console.log(matrixDet(matrix, matrix.length));
+//    console.log(matrix);
+</script>
+<script src="matrix.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<style>
+    .not-valid {
+        border: 1px solid red;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        console.log("ready!");
+
+        function printTable($selector, size) {
+            $selector.html('');
+
+            for (i = 0; i < size; i++) {
+                row = $('<tr>');
+
+                for (j = 0; j < size; j++) {
+                    row.append(
+                            $('<td>').html(
+                                    $('<input>').attr({
+                                        value: "",
+                                        type: "text",
+                                        name: "matrix[][]"
+                                    })
+                            )
+                    );
+                }
+
+                $selector.append(row);
+            }
+        }
+
+        MATRIX_DEFAULT_SIZE = 3;
+
+        $table = $('#calc');
+        printTable($table, MATRIX_DEFAULT_SIZE);
+
+        $('#plusMatrixRow').click(function(e) {
+            event.preventDefault();
+
+            MATRIX_DEFAULT_SIZE++;
+            printTable($table, MATRIX_DEFAULT_SIZE);
+        });
+
+        $('#minusMatrixRow').click(function(e) {
+            event.preventDefault();
+
+            MATRIX_DEFAULT_SIZE--;
+            printTable($table, MATRIX_DEFAULT_SIZE);
+        });
+
+        $('#calculate').click(function(e) {
+            e.preventDefault();
+
+            console.log("Calculate");
+
+            var matrix = new Array();
+            var isValid = true;
+
+            $('#calc tr').each(function() {
+                var elements = $('td');
+
+                var arrElementsRow = [];
+                $(this).find('td input').each(function(element) {
+                    var $element = $(this);
+
+                    if ($element.val() == "") {
+                        $element.addClass('not-valid');
+                        isValid = false;
+                    } else {
+                        $element.removeClass('not-valid');
+                    }
+
+                    arrElementsRow.push(parseFloat($element.val()));
+                });
+
+                matrix.push(arrElementsRow);
+            });
+
+            console.log(matrix);
+
+            if (isValid) {
+                $('#result').html(matrixDet(matrix, matrix.length));
+            }
+        })
+    });
+</script>
+
+<form>
+    <table id="calc"></table>
+    <button id="calculate">Посчитать</button>
+    <button id="plusMatrixRow">+1</button>
+    <button id="minusMatrixRow">-1</button>
+    <h2 id="result">0</h2>
+</form>
+</body>
+</html>
