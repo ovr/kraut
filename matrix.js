@@ -148,5 +148,9 @@ function matrixDet(matrix, n) {
     }
 
     console.log("Result before devide " + result);
+    if (isNaN(result)) {
+        return 0;
+    }
+
     return result.divide(1, 0, 6);
 }
