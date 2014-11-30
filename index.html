@@ -8,9 +8,13 @@
     <script>
         Number.prototype.compareTo = function (obj) {
             assert (obj instanceof Number, "param type is error!");
+
             v = obj.valueOfIn();
-            return this.valueOf () <v? -1: this.valueOf (? 1: 0)> v;
+            thisValue = obj.valueOfIn();
+
+            return thisValue > v ? -1 : (thisValue < v ? 1 : 0);
         };
+
 
         function matrixDet(matrix, n) {
             var i, j;
@@ -76,7 +80,10 @@
 
                     matrix[i][j] = summ;
                     var cur = Math.abs(summ);
-                    if (Math.compareTo cur > )
+
+                    if (cur.compareTo(summ)) {
+
+                    }
                 }
             }
         }
