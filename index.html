@@ -201,6 +201,8 @@
             console.log("Calculate");
 
             var matrix = new Array();
+            var isValid = true;
+
             $('#calc tr').each(function() {
                 var elements = $('td');
 
@@ -210,6 +212,7 @@
 
                     if ($element.val() == "") {
                         $element.addClass('not-valid');
+                        isValid = false;
                     } else {
                         $element.removeClass('not-valid');
                     }
@@ -221,7 +224,10 @@
             });
 
             console.log(matrix);
-            $('#result').html(matrixDet(matrix, matrix.length));
+
+            if (isValid) {
+                $('#result').html(matrixDet(matrix, matrix.length));
+            }
         })
     });
 </script>
