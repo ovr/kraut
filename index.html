@@ -18,8 +18,12 @@
             return thisValue > v ? -1 : (thisValue < v ? 1 : 0);
         };
 
-        Number.prototype.devide = function (divisor, scale) {
+        Number.prototype.divide = function (divisor, scale, type) {
             return this.valueOf() / divisor;
+        };
+
+        Number.prototype.multiply = function(obj) {
+            return this.valueOf() * obj.valueOf();
         };
 
         function matrixDet(matrix, n) {
@@ -36,7 +40,7 @@
                 }
             }
 
-            var tmpMatrix = new Array(n);
+            var scaling = new Array(n);
 
             var tmp;
 
@@ -53,7 +57,7 @@
                  * @todo Проверить долбаеб ли я?
                  * @type {number}
                  */
-                tmpMatrix[i] = (1/tmp)/1;
+                scaling[i] = (1/tmp)/1;
 //                console.log(tmpMatrix[i]);
             }
 
@@ -94,14 +98,15 @@
                 }
 
                 if (j != imax) {
-                    for (k=0; k<n; k++)
-                    {
-                        var t = a[j][k];
-                        a[j][k] = a[imax][k];
-                        a[imax][k] = t;
+                    var t;
+
+                    for (k=0; k<n; k++)  {
+                        t = matrix[j][k];
+                        matrix[j][k] = matrix[imax][k];
+                        matrix[imax][k] = t;
                     }
 
-                    var t = scaling[imax];
+                    t = scaling[imax];
                     scaling[imax] = scaling[j];
                     scaling[j] = t;
 
@@ -110,10 +115,25 @@
 
                 if (j != n-1) {
                     for (i = j + 1;  i < n; i++)  {
-                        a[i][j] = a[i][j].divide(a[j][j], 100, BigDecimal.ROUND_HALF_EVEN);
+                        matrix[i][j] = matrix[i][j].divide(matrix[j][j], 100, 6);
                     }
                 }
             }
+
+            console.log("Sign = " + sign);
+
+            var result = 1;
+            if (sign == -1) {
+                result = -1;
+            }
+
+            console.log("Result before multiple " + result);
+            for (i=0; i<n; i++) {
+                result *= matrix[i][i];
+            }
+
+            console.log("Result before devide " + result);
+            return result.divide(1, 0, 6);
         }
 
         var matrix = [
