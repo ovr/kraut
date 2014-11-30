@@ -7,10 +7,13 @@
 <body>
     <script>
         Number.prototype.compareTo = function (obj) {
-            assert (obj instanceof Number, "param type is error!");
+            if (!obj instanceof Number) {
+                console.log("param type is error!");
+                return false;
+            }
 
-            v = obj.valueOfIn();
-            thisValue = obj.valueOfIn();
+            v = obj.valueOf();
+            thisValue = obj.valueOf();
 
             return thisValue > v ? -1 : (thisValue < v ? 1 : 0);
         };
