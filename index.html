@@ -18,6 +18,9 @@
             return thisValue > v ? -1 : (thisValue < v ? 1 : 0);
         };
 
+        Number.prototype.devide = function (divisor, scale) {
+            return this.valueOf() / divisor;
+        };
 
         function matrixDet(matrix, n) {
             var i, j;
@@ -84,8 +87,30 @@
                     matrix[i][j] = summ;
                     var cur = Math.abs(summ);
 
-                    if (cur.compareTo(summ)) {
+                    if (cur.compareTo(summ) >= 0) {
+                        summ = cur;
+                        imax = i;
+                    }
+                }
 
+                if (j != max) {
+                    for (k=0; k<n; k++)
+                    {
+                        var t = a[j][k];
+                        a[j][k] = a[imax][k];
+                        a[imax][k] = t;
+                    }
+
+                    var t = scaling[imax];
+                    scaling[imax] = scaling[j];
+                    scaling[j] = t;
+
+                    sign = -sign;
+                }
+
+                if (j != n-1) {
+                    for (i = j + 1;  i < n; i++)  {
+                        a[i][j] = a[i][j].divide(a[j][j], 100, BigDecimal.ROUND_HALF_EVEN);
                     }
                 }
             }
