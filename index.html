@@ -206,6 +206,13 @@
             printTable($table, MATRIX_DEFAULT_SIZE);
         });
 
+        $('#minusMatrixRow').click(function(e) {
+            event.preventDefault();
+
+            MATRIX_DEFAULT_SIZE--;
+            printTable($table, MATRIX_DEFAULT_SIZE);
+        });
+
         $('#calculate').click(function(e) {
             e.preventDefault();
 
@@ -247,6 +254,7 @@
     <table id="calc"></table>
     <button id="calculate">Посчитать</button>
     <button id="plusMatrixRow">+1</button>
+    <button id="minusMatrixRow">-1</button>
     <h2 id="result">0</h2>
 </form>
 </body>
