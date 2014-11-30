@@ -173,6 +173,8 @@
         console.log("ready!");
 
         function printTable($selector, size) {
+            $selector.html('');
+
             for (i = 0; i < size; i++) {
                 row = $('<tr>');
 
@@ -192,8 +194,17 @@
             }
         }
 
+        MATRIX_DEFAULT_SIZE = 3;
+
         $table = $('#calc');
-        printTable($table, 3);
+        printTable($table, MATRIX_DEFAULT_SIZE);
+
+        $('#plusMatrixRow').click(function(e) {
+            event.preventDefault();
+
+            MATRIX_DEFAULT_SIZE++;
+            printTable($table, MATRIX_DEFAULT_SIZE);
+        });
 
         $('#calculate').click(function(e) {
             e.preventDefault();
@@ -235,6 +246,7 @@
 <form>
     <table id="calc"></table>
     <button id="calculate">Посчитать</button>
+    <button id="plusMatrixRow">+1</button>
     <h2 id="result">0</h2>
 </form>
 </body>
