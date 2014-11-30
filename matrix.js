@@ -13,13 +13,11 @@ Number.prototype.compareTo = function (obj) {
 Number.prototype.divide = function (divisor, scale, type) {
     if (type == 6) {
         if (scale == 0) {
-            return parseInt(this.valueOf() / divisor);
+            return Math.round((this.valueOf() / divisor));
         }
 
         return Math.round((this.valueOf() / divisor) * scale) / scale;
     }
-
-    return this.valueOf() / divisor;
 };
 
 Number.prototype.multiply = function (obj) {
@@ -88,9 +86,16 @@ function matrixDet(matrix, n) {
 
         for (i = j; i < n; i++) {
             summ = matrix[i][j];
+            console.log("Summ!! matrix[" + i + "][" + j + "] = " + summ);
 
             for (k = 0; k < j; k++) {
-                summ -= matrix[i][k] * matrix[k][j];
+                console.log("summ!! " + matrix[i][k] + " * " + matrix[k][j] + " = " + matrix[i][k] * matrix[k][j]);
+
+                /**
+                 * Это округление все равно не поможет :))))
+                 * @type {number}
+                 */
+                summ -= Math.round((matrix[i][k] * matrix[k][j])*100)/100;
             }
 
             console.log("Summ matrix[" + i + "][" + j + "] = " + summ);
