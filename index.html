@@ -177,7 +177,7 @@
                                     $('<input>').attr({
                                         value: "",
                                         type: "text",
-                                        name: "matrix["+i+"]["+j+"]"
+                                        name: "matrix[][]"
                                     })
                             )
                     );
@@ -189,13 +189,34 @@
 
         $table = $('#calc');
         printTable($table, 3);
+
+        $('#calculate').click(function(e) {
+            e.preventDefault();
+
+            console.log("Calculate");
+
+            var matrix = new Array();
+            $('#calc tr').each(function() {
+                var elements = $('td');
+
+                var arrElementsRow = [];
+                $(this).find('td input').each(function(element) {
+                    arrElementsRow.push(parseFloat($(this).val()));
+                });
+
+                matrix.push(arrElementsRow);
+            });
+
+            console.log(matrix);
+            $('#result').html(matrixDet(matrix));
+        })
     });
 </script>
 
 <form>
-    <table id="calc">
-
-    </table>
+    <table id="calc"></table>
+    <button id="calculate">Посчитать</button>
+    <h2 id="result">0</h2>
 </form>
 </body>
 </html>
