@@ -18,5 +18,8 @@
   "homepage": "https://github.com/ovr/matrix-kraut-algoritm",
   "dependencies": {
     "unit.js": "^1.0.2"
+  },
+  "devDependencies": {
+    "bower": "^1.4.1"
   }
 }

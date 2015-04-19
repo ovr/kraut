@@ -1,0 +1,19 @@
+{
+  "name": "kraut",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ovr/kraut",
+  "authors": [
+    "Dmitry Patsura <talk@dmtry.me>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "MathJax": "~2.5.1"
+  }
+}
