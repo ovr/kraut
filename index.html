@@ -33,7 +33,7 @@
         margin: 0 auto;
     }
 
-    #output {
+    #result {
         width: 650px;
         margin: 0 auto;
         text-align: center;
@@ -173,6 +173,11 @@
             for (i = 0; i < n; i++) {
                 L[i][0] = A[i][0];
             }
+
+            $result.append('\\[ ');
+            $result.append("L = " + buildStrMatrix(L));
+            $result.append("U = " + buildStrMatrix(U));
+            $result.append('\\]');
 //
 //                L[0][0]=A[0][0];
 //                L[1][0]=A[1][0];
@@ -195,7 +200,7 @@
 
             var m;
             k = 0;
-            var go;
+            var go, print;
 
             while (k < n) {
                 console.log("K = " + k);
@@ -205,6 +210,8 @@
                 //U[0][1]=A[0][1]/L[0][0];
                 //U[0][2]=A[0][2]/L[0][0];
                 //U[1][2]=(A[1][2]-L[1][0]*U[0][2])/L[1][1];
+
+                print = false;
 
                 for (j = 0; j < n; j++) {
                     if (j > k) {
@@ -226,11 +233,22 @@
 
 
                         U[k][j] = (A[k][j] - sum) / L[k][k];
+                        U[k][j] = Math.round(U[k][j]*10000)/10000;
+
+                        print = true;
                         $result.append('\\[ U[' + k + '][' + j + '] = (' + A[k][j] + tmp + ')/' + L[k][k] + ' = ' + U[k][j] + '\\]');
                     }
                 }
 
+                if (print) {
+                    $result.append('\\[ ');
+                    $result.append("U = " + buildStrMatrix(U));
+                    $result.append('\\]');
+                }
+
                 k++;
+
+                print = false;
                 console.log("K = " + k);
 
                 for (i = 0; i < n; i++) {
@@ -253,9 +271,16 @@
                         }
 
                         L[i][k] = A[i][k] - sum;
+                        L[i][k] = Math.round(L[i][k]*10000)/10000;
 
                         $result.append('\\[ L[' + i + '][' + k + '] = (' + A[i][k] + tmp + ') = ' + L[i][k] + '\\]');
                     }
+                }
+
+                if (print) {
+                    $result.append('\\[ ');
+                    $result.append("L = " + buildStrMatrix(L));
+                    $result.append('\\]');
                 }
             }
 
@@ -299,9 +324,12 @@
 
                 $result.append('\\[A = L * U\\]');
 
+//                $result.append('<a href="#">Показать решение</a>');
+//                $result.append('<div style="display: none;">');
                 var result = kraut(matrix);
                 var L = result[0];
                 var U = result[1];
+//                $result.append('</div>');
 
                 $result.append('\\[ ');
                 $result.append("L = " + buildStrMatrix(L));
