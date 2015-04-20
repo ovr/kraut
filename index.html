@@ -236,7 +236,7 @@
                         U[k][j] = Math.round(U[k][j]*10000)/10000;
 
                         print = true;
-                        $result.append('\\[ U[' + k + '][' + j + '] = (' + A[k][j] + tmp + ')/' + L[k][k] + ' = ' + U[k][j] + '\\]');
+                        $result.append('\\[ {U_'+(k+1)+'}_'+(j+1)+' = (' + A[k][j] + tmp + ')/' + L[k][k] + ' = ' + U[k][j] + '\\]');
                     }
                 }
 
@@ -274,7 +274,7 @@
                         L[i][k] = A[i][k] - sum;
                         L[i][k] = Math.round(L[i][k]*10000)/10000;
 
-                        $result.append('\\[ L[' + i + '][' + k + '] = (' + A[i][k] + tmp + ') = ' + L[i][k] + '\\]');
+                        $result.append('\\[ {L_'+(i+1)+'}_'+(k+1)+' = (' + A[i][k] + tmp + ') = ' + L[i][k] + '\\]');
                     }
                 }
 
