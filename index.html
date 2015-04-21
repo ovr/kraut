@@ -121,12 +121,12 @@
         $tableA = $('#calc');
         $tableB = $('#vectB');
 //
-//  printTable($table, [[3, 1, -1, 2], [-5, 1, 3, -4], [2, 0, 1, -1], [1, -5, 3, -3]]);
+//        printTable($tableA, [[3, 1, -1, 2], [-5, 1, 3, -4], [2, 0, 1, -1], [1, -5, 3, -3]]);
         //5 #3# 1
 //        printTable($table, [[1,2,4],[5,3,1],[2,4,2]]);
 
         printTable($tableA, [[1,2,4],[5,6,1],[2,4,2]]);
-        printTableVector($tableB, [1,2,3]);
+        printTableVector($tableB, [1,2,3], MATRIX_DEFAULT_SIZE);
 
 
         function parseMatrix() {
@@ -441,7 +441,7 @@
                     summ = 0;
                     tmpSumm = [];
 
-                    for (k = (i-n)+4; k < n; k++) {
+                    for (k = i+1; k < n; k++) {
                         summ += U[i][k] * X[k];
                         tmpSumm.push(U[i][k]+' * '+X[k]);
                     }
