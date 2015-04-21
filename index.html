@@ -104,7 +104,7 @@
         var $minusMatrixRow = $('#minusMatrixRow');
 
         $('#plusMatrixRow').click(function (e) {
-            event.preventDefault();
+            e.preventDefault();
 
             if (MATRIX_DEFAULT_SIZE == 2) {
                 $minusMatrixRow.removeAttr('disabled');
@@ -115,7 +115,7 @@
         });
 
         $minusMatrixRow.click(function (e) {
-            event.preventDefault();
+            e.preventDefault();
 
             if (MATRIX_DEFAULT_SIZE == 3) {
                 $minusMatrixRow.attr('disabled', 'true');
